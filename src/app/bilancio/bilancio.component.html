@@ -1,0 +1,53 @@
+<div class="container">
+    <table>
+        <tr>
+            <th>
+                Importo:
+            </th>
+            <th>
+                <input type="number" [(ngModel)]="numero" min="0" step="0.01">
+                <button class="btn" (click)="aggiungiEntrata()" title="Aggiungi entrata">+</button>
+                <button class="btn" (click)="aggiungiUscita()" title="Aggiungi uscita">-</button>
+            </th>
+        </tr>
+        <tr *ngFor="let b of bilancio; index as i;">
+            <td>
+                <button class="btn" (click)="rimuoviMovimento(i)" title="Rimuovi questo importo">X</button>
+            </td>
+            <td [ngClass]="{'rosso' : b < 0 , 'verde' : b > 0}">
+                {{b}}
+            </td>
+        </tr>
+        <tr class="linea">
+            <td colspan="2">
+                <hr>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Entrate totali:
+            </td>
+            <td class="somma" [ngClass]="{'rosso' : sommaEntrate() < 0 , 'verde' : sommaEntrate() > 0}">
+                {{sommaEntrate().toFixed(2)}} €
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Uscite totali:
+            </td>
+            <td class="somma" [ngClass]="{'rosso' : sommaUscite() < 0 , 'verde' : sommaUscite() > 0}">
+                {{sommaUscite().toFixed(2)}} €
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Bilancio finale:
+            </td>
+            <td class="somma finale" [ngClass]="{'rosso' : sommaMovimenti() < 0 , 'verde' : sommaMovimenti() > 0}">
+                {{sommaMovimenti().toFixed(2)}} €
+            </td>
+        </tr>
+    </table>
+
+
+</div>
